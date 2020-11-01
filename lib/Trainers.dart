@@ -106,7 +106,7 @@ class _TrainersState extends State<Trainers> {
                                             BorderRadius.circular(5.0),
                                       ),
                                       child: Container(
-                                        height: 110,
+                                        height: 91,
                                         width: 344,
                                         child: Column(
                                           mainAxisAlignment:
