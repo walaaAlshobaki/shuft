@@ -17,6 +17,7 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   // Initial location of the Map view
   Completer<GoogleMapController> controller1;
+  BuildContext context;
 
   //static LatLng _center = LatLng(-15.4630239974464, 28.363397732282127);
   static LatLng _initialPosition;
@@ -106,6 +107,7 @@ class MapSampleState extends State<MapSample> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() => this.context = context);
     // Determining the screen width & height
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
