@@ -270,7 +270,7 @@ class _PackagesState extends State<Packages> {
                                                                                     padding: const EdgeInsets.all(8.0),
                                                                                     child: Text(
                                                                                       "42 \$",
-                                                                                      style: TextStyle(color: Color(0xff007EE7), fontSize: 39.0),
+                                                                                      style: TextStyle(color: Color(0xff007EE7), fontSize: 29.0),
                                                                                     ),
                                                                                   ),
                                                                                 ],

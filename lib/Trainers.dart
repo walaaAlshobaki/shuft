@@ -11,8 +11,6 @@ class Trainers extends StatefulWidget {
 }
 
 class _TrainersState extends State<Trainers> {
-
-
   @override
   void initState() {
     super.initState();
@@ -68,7 +66,6 @@ class _TrainersState extends State<Trainers> {
             Container(
               child: Stack(
                 children: <Widget>[
-                 
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 160, 10, 0),
                     child: Text(
@@ -82,16 +79,16 @@ class _TrainersState extends State<Trainers> {
                 ],
               ),
             ),
-             Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 200, 10, 0),
-                  child: ListView.builder(
-                    itemBuilder: (context, position) {
-                      return Column(
-                        children: <Widget>[
-                          Container(
-                            child: Stack(
-                              children: <Widget>[
-                                Padding(
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 200, 10, 0),
+              child: ListView.builder(
+                itemBuilder: (context, position) {
+                  return Column(
+                    children: <Widget>[
+                      Container(
+                        child: Stack(
+                          children: <Widget>[
+                            Padding(
                                   padding: EdgeInsets.only(
                                       top: 0, left: 10, right: 10),
                                   child: Container(
@@ -168,12 +165,12 @@ class _TrainersState extends State<Trainers> {
                                                               )
                                                             ])
                                                       ],
-                                                    ), ),
-                                                 
-                                                     Padding( padding: EdgeInsets.only(
-                                                          left: 70,
-                                                   
-                                                          ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      left: 70,
+                                                    ),
                                                     child:Align(
                                                         alignment: Alignment
                                                             .centerRight,
