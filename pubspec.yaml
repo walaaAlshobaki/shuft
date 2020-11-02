@@ -44,6 +44,7 @@ dependencies:
   onesignal_flutter: ^2.6.1
   syncfusion_flutter_calendar: ^18.3.44
   flutter_time_picker_spinner: ^1.0.6+1
+  permission: ^0.1.7
 
 dev_dependencies:
   flutter_test:

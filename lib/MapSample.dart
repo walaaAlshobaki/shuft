@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'MyIconSpinner.dart';
 import 'SearchClass.dart';
+import 'package:permission/permission.dart';
 
 class MapSample extends StatefulWidget {
   @override
@@ -18,7 +19,9 @@ class MapSampleState extends State<MapSample> {
   // Initial location of the Map view
   Completer<GoogleMapController> controller1;
   BuildContext context;
-
+  bool a0 = false;
+  PermissionName permissionName = PermissionName.Internet;
+  String message = '';
   //static LatLng _center = LatLng(-15.4630239974464, 28.363397732282127);
   static LatLng _initialPosition;
   final Set<Marker> _markers = {};
@@ -103,6 +106,19 @@ class MapSampleState extends State<MapSample> {
         "$search $index",
       );
     });
+  }
+
+  requestPermissions() async {
+    List<PermissionName> permissionNames = [];
+    if (a0) permissionNames.add(PermissionName.Location);
+
+    message = '';
+    var permissions = await Permission.requestPermissions(permissionNames);
+    permissions.forEach((permission) {
+      message +=
+          '${permission.permissionName}: ${permission.permissionStatus}\n';
+    });
+    setState(() {});
   }
 
   @override
