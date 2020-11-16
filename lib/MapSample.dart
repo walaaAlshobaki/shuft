@@ -17,6 +17,7 @@ class MapSample extends StatefulWidget {
 
 class MapSampleState extends State<MapSample> {
   // Initial location of the Map view
+  Completer<GoogleMapController> _controller = Completer();
   Completer<GoogleMapController> controller1;
   BuildContext context;
   bool a0 = false;
@@ -49,12 +50,6 @@ class MapSampleState extends State<MapSample> {
           icon: BitmapDescriptor.defaultMarker));
 
       print('${placemark[0].name}');
-    });
-  }
-
-  _onMapCreated(GoogleMapController controller) {
-    setState(() {
-      controller1.complete(controller);
     });
   }
 
@@ -184,7 +179,9 @@ class MapSampleState extends State<MapSample> {
                               target: _initialPosition,
                               zoom: 14.4746,
                             ),
-                            onMapCreated: _onMapCreated,
+                            onMapCreated: (GoogleMapController controller) {
+                              _controller.complete(controller);
+                            },
                             zoomGesturesEnabled: true,
                             onCameraMove: _onCameraMove,
                             myLocationEnabled: true,
