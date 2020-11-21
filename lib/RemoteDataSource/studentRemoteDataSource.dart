@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
 import 'package:shaftt_app/AppClient/app_client.dart';
+import 'package:shaftt_app/Database/DBHelper.dart';
+import 'package:shaftt_app/Database/StudentDatabaseHelper.dart';
 import 'package:shaftt_app/model/NetworkResponse.dart';
 import 'package:shaftt_app/model/Result.dart';
 import 'package:shaftt_app/model/studentModel.dart';
@@ -23,6 +26,7 @@ class StudentRemoteDataSource {
       StudentRemoteDataSource._privateConstructor();
   factory StudentRemoteDataSource() => _apiResponse;
   var instance = Singleton.instance;
+  final dbHelper = StudentDatabaseHelper.instance;
   var prefs = null;
   // s1.studentRegisert
   AppClient client = AppClient(Client());
@@ -41,16 +45,39 @@ class StudentRemoteDataSource {
           path: instance.studentLogin,
           parameter: student);
       map = jsonDecode(response.body);
-      print(map["msg"]);
+      // print(map["student"]);
       var message = map["msg"];
+      print(map["msg"]);
       if (response.statusCode == 200) {
-        _studentStream.sink.add(Result<NetworkResponse>.success(
-            NetworkResponse.fromRawJson(response.body)));
-        print(response.body);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => StudentPackages()));
-        SharedPrefs.setLogin(true);
-        SharedPrefs.setStudent(map["student"]);
+        if (message != 'بيانات الدخول غير صحيحة') {
+          _studentStream.sink.add(Result<NetworkResponse>.success(
+              NetworkResponse.fromRawJson(response.body)));
+          print(response.body);
+
+          print(map["student"]["firstName"]);
+          var dbHelper = DBHelper();
+
+          Student student = new Student();
+          student.firstName = map["student"]["firstName"];
+          student.id = map["student"]["id"];
+          student.lastName = map["student"]["lastName"];
+          student.email = map["student"]["email"];
+          student.phoneNumber = map["student"]["phoneNumber"];
+
+          student.birthday = map["student"]["birthday"];
+          student.certifcateCode = map["student"]["certifcateCode"];
+          student.IDNum = map["student"]["IDNum"];
+          student.Gender = map["student"]["Gender"];
+          student.location = map["student"]["location"];
+          student.profile = "profile";
+          student.api_token = map["student"]["api_token"];
+
+          dbHelper.saveEmployee(student);
+
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => StudentPackages()));
+          SharedPrefs.setLogin(true);
+        }
       } else {
         print((response.statusCode));
         print((student.password));
@@ -75,6 +102,7 @@ class StudentRemoteDataSource {
       }
     } catch (error) {
       print(error);
+
       return Result.error("Something went wrong!");
     }
   }
@@ -116,7 +144,7 @@ class StudentRemoteDataSource {
 
     request.fields['location'] = fileName;
     request.fields['IDNum'] = student.IDNum;
-    request.fields['Gender'] = student.Gender;
+    request.fields['Gender'] = student.Gender.toString();
     request.fields['password_confirmation'] = student.password;
     request.fields['stageId'] = "1";
 

@@ -101,7 +101,7 @@ class _StudantRegistrationState extends State<StudantRegistration> {
 
     // s1.studentRegisert
     var formatter = new DateFormat('yyyy-MM-dd');
-    String gende = "0";
+    int gende = 0;
 
     String formatted = formatter.format(selectedDate);
 

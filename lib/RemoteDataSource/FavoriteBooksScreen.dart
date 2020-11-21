@@ -1,18 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shaftt_app/Database/DBHelper.dart';
+import 'package:shaftt_app/RemoteDataSource/packagesRemoteDataSource.dart';
+import 'package:shaftt_app/model/Result.dart';
+import 'package:shaftt_app/model/packagesModel.dart';
 
-import 'Database/DBHelper.dart';
-import 'RemoteDataSource/packagesRemoteDataSource.dart';
-import 'SharedPrefs.dart';
-import 'model/Result.dart';
-import 'model/packagesModel.dart';
-
-class Packages extends StatefulWidget {
+class FavoriteBooksScreen extends StatefulWidget {
   @override
-  _PackagesState createState() => _PackagesState();
+  _FavoriteBooksScreenState createState() => _FavoriteBooksScreenState();
 }
 
-class _PackagesState extends State<Packages> {
+class _FavoriteBooksScreenState extends State<FavoriteBooksScreen> {
   packagesRemoteDataSource _apiResponse = packagesRemoteDataSource();
   String name = "";
 

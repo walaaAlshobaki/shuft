@@ -1,26 +1,22 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart';
-import 'package:location/location.dart';
-
 class Student {
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phoneNumber;
-  final String password;
-  final String birthday;
-  final File certifcateCodeFile;
-  final String certifcateCode;
-  final String IDNum;
-  final String Gender;
-  final String location;
-  final String updated_at;
-  final String created_at;
-  final String id;
-  final String profile;
-  final String api_token;
+  String firstName;
+  String lastName;
+  String email;
+  String phoneNumber;
+  String password;
+  String birthday;
+  File certifcateCodeFile;
+  String certifcateCode;
+  String IDNum;
+  int Gender;
+  String location;
+  String updated_at;
+  String created_at;
+  int id;
+  String profile;
+  String api_token;
 
   Student(
       {this.firstName,
