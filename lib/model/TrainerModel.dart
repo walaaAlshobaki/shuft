@@ -1,5 +1,25 @@
+import 'dart:convert';
+
+class TrainerModelList {
+  List<TrainerModel> trainerModelList;
+
+  TrainerModelList({this.trainerModelList});
+
+  factory TrainerModelList.fromRawJson(String str) =>
+      TrainerModelList.fromJson(json.decode(str));
+
+  factory TrainerModelList.fromJson(Map<String, dynamic> json) =>
+      TrainerModelList(
+          trainerModelList: List<TrainerModel>.from(
+              json["bookList"].map((x) => TrainerModel.fromJson(x))));
+
+  Map<String, dynamic> toJson() => {
+        "bookList": List<dynamic>.from(trainerModelList.map((x) => x.toJson())),
+      };
+}
+
 class TrainerModel {
-  final String id;
+  final int id;
   final String firstName;
   final String lastName;
   final String email;
@@ -14,7 +34,7 @@ class TrainerModel {
   final int Gender;
   final String testImage;
   final int test;
-  final double Lesson_price;
+  final int Lesson_price;
   final String location;
   final String avatar;
 

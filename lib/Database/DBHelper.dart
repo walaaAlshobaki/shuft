@@ -62,6 +62,16 @@ class DBHelper {
     return list;
   }
 
+  updateStudent(Student question) async {
+    print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+    var dbClient = await db;
+    await dbClient.transaction((txn) async {
+      var res = await txn.update("student_table", question.toJson(),
+          where: "columnId = ?", whereArgs: [question.id]);
+      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + res.toString());
+    });
+  }
+
   void saveEmployee(Student employee) async {
     print("INSERT INTO student_table");
     var dbClient = await db;

@@ -42,10 +42,16 @@ class AppClient {
     switch (requestType) {
       //
       case RequestType.GET:
-        List list = await fetchEmployeesFromDatabase();
-        if (list.isNotEmpty) {
-          token = list.last["api_token"];
-        }
+        Future<String> authToken = SharedPrefs.getUserToken();
+        authToken.then((data) {
+          token = data.toString();
+        }, onError: (e) {
+          print(e);
+        });
+        // List list = await fetchEmployeesFromDatabase();
+        // if (list.isNotEmpty) {
+        //   token = list.last["api_token"];
+        // }
         return _client.get("$_baseUrl/$path", headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -53,7 +59,11 @@ class AppClient {
         });
       case RequestType.POST:
         return _client.post("$_baseUrl/$path",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
             body: json.encode(parameter));
       case RequestType.DELETE:
         return _client.delete("$_baseUrl/$path");

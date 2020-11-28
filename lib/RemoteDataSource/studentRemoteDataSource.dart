@@ -10,6 +10,7 @@ import 'package:shaftt_app/Database/StudentDatabaseHelper.dart';
 import 'package:shaftt_app/model/NetworkResponse.dart';
 import 'package:shaftt_app/model/Result.dart';
 import 'package:shaftt_app/model/studentModel.dart';
+import 'package:shaftt_app/util/AuthRepository.dart';
 import 'package:shaftt_app/util/RequestType.dart';
 import 'package:shaftt_app/util/Singleton.dart';
 import 'package:async/async.dart' as asyn;
@@ -38,6 +39,7 @@ class StudentRemoteDataSource {
 
   Future<Result> loginStudent(Student student, BuildContext context) async {
     _studentStream.sink.add(Result<String>.loading("Loading"));
+    var prefs = SharedPreferences.getInstance();
     Map<String, dynamic> map;
     try {
       final response = await client.request(
@@ -73,7 +75,9 @@ class StudentRemoteDataSource {
           student.api_token = map["student"]["api_token"];
 
           dbHelper.saveEmployee(student);
-
+          SharedPrefs.setUserToken(map["student"]["api_token"]);
+          // AuthRepositoryImpl authRepository = new AuthRepositoryImpl();
+          // authRepository._saveToken(map["student"]["api_token"]);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => StudentPackages()));
           SharedPrefs.setLogin(true);

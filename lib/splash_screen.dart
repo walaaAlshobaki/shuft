@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shaftt_app/util/Singleton.dart';
 import 'package:shaftt_app/what_is_shaftt.dart';
 import 'dart:async';
 
@@ -10,15 +11,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  var instance = Singleton.instance;
   Future<bool> databaseExists(String path) =>
       databaseFactory.databaseExists(path);
   @override
   void initState() {
     super.initState();
-    bool token = databaseExists("student_table.db") as bool;
-    if (token) {
-      print("databaseExists");
-    }
+
     _mockCheckForSession().then((status) {
       if (status) {
         _navigateToHome();

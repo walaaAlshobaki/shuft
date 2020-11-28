@@ -286,9 +286,9 @@ class _PackagesState extends State<Packages> {
                                             alignment: Alignment.centerRight,
                                             child: Container(
                                                 child: Card(
-                                                    elevation: 1,
+                                                    elevation: 0,
                                                     color:
-                                                        new Color(0xffCECECE),
+                                                        new Color(0xffE8E8ED),
                                                     margin: EdgeInsets.fromLTRB(
                                                         0.0, 0.0, 0.0, 0.0),
                                                     shape:

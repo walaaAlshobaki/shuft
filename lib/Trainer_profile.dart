@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shaftt_app/MapSample.dart';
+
 import 'dart:io';
 import 'package:shaftt_app/themes.dart';
 import 'package:shaftt_app/trainer_calender.dart';
@@ -12,7 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'SharedPrefs.dart';
 import 'Trainer_packages.dart';
-import 'student_class_schedule.dart';
 import 'student_setting.dart';
 
 class TrainerProfile extends StatefulWidget {

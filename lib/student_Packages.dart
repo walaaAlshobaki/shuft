@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shaftt_app/student_profile.dart';
+import 'package:shaftt_app/util/Singleton.dart';
 
 import 'Packages.dart';
+import 'RemoteDataSource/FavoriteBooksScreen.dart';
+import 'SharedPrefs.dart';
 import 'Trainers.dart';
 import 'notifcation.dart';
 import 'MapSample.dart';
@@ -17,6 +20,14 @@ class StudentPackages extends StatefulWidget {
 class _StudentPackagesState extends State<StudentPackages>
     with TickerProviderStateMixin<StudentPackages> {
   int index = 0;
+  var instance = Singleton.instance;
+  @override
+  void initState() {
+    super.initState();
+
+    print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+    // instance.refreshStudent();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +64,7 @@ class _StudentPackagesState extends State<StudentPackages>
                 offstage: index != 3,
                 child: new TickerMode(
                   enabled: index == 3,
-                  child: new MaterialApp(home: new Trainers()),
+                  child: new MaterialApp(home: new FavoriteBooksScreen()),
                 ),
               ),
               new Offstage(

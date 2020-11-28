@@ -19,6 +19,18 @@ class SharedPrefs {
     return (prefs.getString(keyUsername) ?? '').toString();
   }
 
+  @override
+  Future<String> getToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return Future.value(prefs.getString(keyUserToken));
+  }
+
+  static void _saveToken(String token) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(keyUserToken, token);
+  }
+
   /// ----------------------------------------------------------
   /// Method that saves the user language code
   /// ----------------------------------------------------------
