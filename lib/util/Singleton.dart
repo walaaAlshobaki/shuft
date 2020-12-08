@@ -17,6 +17,7 @@ class Singleton {
   var allTeacher = "Student/all-teacher";
   var studentRefresh = "Student/student-refresh";
   var filterTeacherName = "Student/filter-teacher-name";
+  var student_studentProfile = "Student/student-profile";
   var dbHelper = DBHelper();
   String token;
   Future<List<Map>> fetchEmployeesFromDatabase() async {

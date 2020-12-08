@@ -3,6 +3,7 @@ import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shaftt_app/RemoteDataSource/TrainerRemoteDataSource.dart';
+import 'package:shaftt_app/TRAINERPROFILE.dart';
 import 'package:shaftt_app/model/Result.dart';
 import 'package:shaftt_app/model/TrainerModel.dart';
 
@@ -573,142 +574,157 @@ class _FavoriteBooksScreenState extends State<FavoriteBooksScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        Card(
-                          elevation: 5,
-                          color: new Color(0xffE8E8ED),
-                          margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Container(
-                            // height: 91,
-                            width: 344,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TRAINERPROFILE(
+                                            trainerModel: bookCollection
+                                                .trainerModelList[index],
+                                          )));
+                            },
+                            child: Card(
+                              elevation: 5,
+                              color: new Color(0xffE8E8ED),
+                              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Container(
+                                // height: 91,
+                                width: 344,
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(5, 5, 0, 5),
-                                      child: Image.asset(
-                                        "assets/img/user.png",
-                                        width: 65,
-                                        height: 65,
-                                      ),
-                                    ),
-                                    new Container(
-                                      constraints: BoxConstraints(
-                                          minWidth: 100, maxWidth: 178),
-                                      padding: EdgeInsets.all(10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            bookCollection
-                                                    .trainerModelList[index]
-                                                    .firstName +
-                                                " " +
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              5, 5, 0, 5),
+                                          child: Image.asset(
+                                            "assets/img/user.png",
+                                            width: 65,
+                                            height: 65,
+                                          ),
+                                        ),
+                                        new Container(
+                                          constraints: BoxConstraints(
+                                              minWidth: 100, maxWidth: 178),
+                                          padding: EdgeInsets.all(10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                bookCollection
+                                                        .trainerModelList[index]
+                                                        .firstName +
+                                                    " " +
+                                                    bookCollection
+                                                        .trainerModelList[index]
+                                                        .lastName,
+                                                style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Text(
                                                 bookCollection
                                                     .trainerModelList[index]
-                                                    .lastName,
-                                            style: TextStyle(
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            bookCollection
-                                                .trainerModelList[index]
-                                                .shiftGear,
-                                            style: TextStyle(fontSize: 14.0),
-                                          ),
-                                          Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 16.0,
-                                                  color: new Color(0xff55CE9D),
-                                                ),
-                                                Text(
-                                                  "4.0",
-                                                  style:
-                                                      TextStyle(fontSize: 18.0),
-                                                )
-                                              ])
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 70,
-                                        ),
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Container(
-                                                child: Card(
-                                                    elevation: 0,
-                                                    color:
-                                                        new Color(0xffE8E8ED),
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
+                                                    .shiftGear,
+                                                style:
+                                                    TextStyle(fontSize: 14.0),
+                                              ),
+                                              Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.star,
+                                                      size: 16.0,
+                                                      color:
+                                                          new Color(0xff55CE9D),
                                                     ),
-                                                    child: Container(
-                                                        height: 91,
-                                                        width: 100,
-                                                        child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: <Widget>[
-                                                              Column(
+                                                    Text(
+                                                      "4.0",
+                                                      style: TextStyle(
+                                                          fontSize: 18.0),
+                                                    )
+                                                  ])
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 70,
+                                            ),
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: Container(
+                                                    child: Card(
+                                                        elevation: 0,
+                                                        color: new Color(
+                                                            0xffE8E8ED),
+                                                        margin:
+                                                            EdgeInsets.fromLTRB(
+                                                                0.0,
+                                                                0.0,
+                                                                0.0,
+                                                                0.0),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
+                                                        ),
+                                                        child: Container(
+                                                            height: 91,
+                                                            width: 100,
+                                                            child: Column(
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
-                                                                        .spaceEvenly,
+                                                                        .center,
                                                                 children: <
                                                                     Widget>[
-                                                                  Text(
-                                                                    "class",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff1F1E4F),
-                                                                        fontSize:
-                                                                            16.0),
+                                                                  Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceEvenly,
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Text(
+                                                                        "class",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Color(0xff1F1E4F),
+                                                                            fontSize: 16.0),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          bookCollection.trainerModelList[index].Lesson_price.toString() +
+                                                                              "\$",
+                                                                          style: TextStyle(
+                                                                              color: Color(0xff007EE7),
+                                                                              fontSize: 25.0),
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child: Text(
-                                                                      bookCollection
-                                                                              .trainerModelList[index]
-                                                                              .Lesson_price
-                                                                              .toString() +
-                                                                          "\$",
-                                                                      style: TextStyle(
-                                                                          color: Color(
-                                                                              0xff007EE7),
-                                                                          fontSize:
-                                                                              25.0),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ])))))),
+                                                                ])))))),
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        )
+                              ),
+                            ))
                       ],
                     ),
                   ),

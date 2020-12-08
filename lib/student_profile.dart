@@ -3,9 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shaftt_app/MapSample.dart';
 import 'package:shaftt_app/student_payment.dart';
 import 'package:shaftt_app/themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'SharedPrefs.dart';
+import 'Database/DBHelper.dart';
 import 'student_class_schedule.dart';
 import 'student_setting.dart';
 
@@ -15,17 +13,22 @@ class StudentProfile extends StatefulWidget {
 }
 
 class StudentProfileState extends State<StudentProfile> {
-  var prefs = SharedPreferences.getInstance();
   String name = "";
+
+  var dbHelper = DBHelper();
+  fetchEmployeesFromDatabase() async {
+    Future<List<Map>> employees = dbHelper.getEmployees();
+    List list = await employees;
+    name = list.last["firstName"] + " " + list.last["lastName"];
+
+    return name;
+  }
+
   @override
   void initState() {
     super.initState();
-    Future<String> authToken = SharedPrefs.getUsername();
-    authToken.then((data) {
-      name = data.toString();
-    }, onError: (e) {
-      print(e);
-    });
+
+    fetchEmployeesFromDatabase();
   }
 
   @override
@@ -141,19 +144,19 @@ class StudentProfileState extends State<StudentProfile> {
                                               whiteGradients,
                                               StudentPayment(),
                                               Icons.payment),
-                                           roundedRectButton(
+                                          roundedRectButton(
                                               "My class schedule",
                                               Color(0xff1F1E4F),
                                               whiteGradients,
                                               StudentClassSchedule(),
                                               Icons.schedule),
-                                           roundedRectButton(
+                                          roundedRectButton(
                                               "Logout",
                                               Color(0xff1F1E4F),
                                               whiteGradients,
                                               MapSample(),
                                               Icons.person_outline),
-                                            roundedRectButton(
+                                          roundedRectButton(
                                               "settings",
                                               Color(0xff1F1E4F),
                                               whiteGradients,
@@ -181,7 +184,7 @@ class StudentProfileState extends State<StudentProfile> {
             InkWell(
               child: Container(
                   alignment: Alignment.center,
-              
+
                   // decoration: ShapeDecoration(
                   //   shape: RoundedRectangleBorder(
                   //       borderRadius: BorderRadius.circular(50.0)),
@@ -204,8 +207,6 @@ class StudentProfileState extends State<StudentProfile> {
                             child: Container(
                                 height: 75,
                                 width: 75,
-                                 
-                  
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -213,24 +214,20 @@ class StudentProfileState extends State<StudentProfile> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: <Widget>[
-                                        
                                             Icon(
                                               icon,
                                               size: 35.0,
                                               color: new Color(0xff1F1E4F),
                                             ),
                                           ])
-                                    ])))
-                                       , Text(title,
-                                                style: TextStyle(
-                                                    color: textColor,
-                                                    fontSize: 15,
-                                                    fontFamily:
-                                                        "HelveticaMedium",
-                                                    fontWeight:
-                                                        FontWeight.w200)),
-                      ]))
-                      ),
+                                    ]))),
+                        Text(title,
+                            style: TextStyle(
+                                color: textColor,
+                                fontSize: 15,
+                                fontFamily: "HelveticaMedium",
+                                fontWeight: FontWeight.w200)),
+                      ]))),
               onTap: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => page));

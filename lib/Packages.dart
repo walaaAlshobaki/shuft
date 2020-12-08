@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Database/DBHelper.dart';
 import 'RemoteDataSource/packagesRemoteDataSource.dart';
-import 'SharedPrefs.dart';
 import 'model/Result.dart';
 import 'model/packagesModel.dart';
 
@@ -213,39 +210,66 @@ class _PackagesState extends State<Packages> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        Card(
-                          elevation: 5,
-                          color: new Color(0xffE8E8ED),
-                          margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Container(
-                            width: 344,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(5, 5, 0, 5),
-                                      child: Image.asset(
-                                        "assets/img/user.png",
-                                        width: 65,
-                                        height: 65,
-                                      ),
-                                    ),
-                                    new Container(
-                                      constraints: BoxConstraints(
-                                          minWidth: 100, maxWidth: 178),
-                                      padding: EdgeInsets.all(10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Stack(
+                                      overflow: Overflow.visible,
+                                      children: <Widget>[
+                                        Positioned(
+                                          right: -40.0,
+                                          top: -40.0,
+                                          child: InkResponse(
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: CircleAvatar(
+                                              child: Icon(
+                                                Icons.close,
+                                                color: Color(0xff707070),
+                                              ),
+                                              backgroundColor:
+                                                  new Color(0xff55CE9D),
+                                            ),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      100, 5, 0, 5),
+                                              child: Image.asset(
+                                                "assets/img/user.png",
+                                                width: 65,
+                                                height: 65,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      50, 0, 0, 0),
+                                              child: Text(
+                                                bookCollection
+                                                        .books[index].price
+                                                        .toString() +
+                                                    " \$",
+                                                style: TextStyle(
+                                                    color: Color(0xff55CE9D),
+                                                    fontSize: 20.0),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 80, 10, 0),
+                                          child: Text(
                                             bookCollection.books[index]
                                                     .trainer["firstName"] +
                                                 " " +
@@ -255,97 +279,168 @@ class _PackagesState extends State<Packages> {
                                                 fontSize: 20.0,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(
-                                            bookCollection.books[index]
-                                                .trainer["shiftGear"],
-                                            style: TextStyle(fontSize: 14.0),
-                                          ),
-                                          Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 16.0,
-                                                  color: new Color(0xff55CE9D),
-                                                ),
-                                                Text(
-                                                  "4.0",
-                                                  style:
-                                                      TextStyle(fontSize: 18.0),
-                                                )
-                                              ])
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 70,
                                         ),
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Container(
-                                                child: Card(
-                                                    elevation: 0,
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 120, 0, 0),
+                                          child: ListTile(
+                                            title: Text(
+                                              bookCollection
+                                                      .books[index].MaxClass
+                                                      .toString() +
+                                                  " class",
+                                              style: TextStyle(fontSize: 20.0),
+                                            ),
+                                            trailing: Text(
+                                              "set",
+                                              style: TextStyle(
+                                                  color: Color(0xff55CE9D),
+                                                  fontSize: 20.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
+                          child: Card(
+                            elevation: 5,
+                            color: new Color(0xffE8E8ED),
+                            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Container(
+                              width: 344,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            5, 5, 0, 5),
+                                        child: Image.asset(
+                                          "assets/img/user.png",
+                                          width: 65,
+                                          height: 65,
+                                        ),
+                                      ),
+                                      new Container(
+                                        constraints: BoxConstraints(
+                                            minWidth: 100, maxWidth: 178),
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              bookCollection.books[index]
+                                                      .trainer["firstName"] +
+                                                  " " +
+                                                  bookCollection.books[index]
+                                                      .trainer["lastName"],
+                                              style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              bookCollection.books[index]
+                                                  .trainer["shiftGear"],
+                                              style: TextStyle(fontSize: 14.0),
+                                            ),
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Icon(
+                                                    Icons.star,
+                                                    size: 16.0,
                                                     color:
-                                                        new Color(0xffE8E8ED),
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.0),
-                                                    ),
-                                                    child: Container(
-                                                        height: 91,
-                                                        width: 100,
-                                                        child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: <Widget>[
-                                                              Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceEvenly,
-                                                                children: <
-                                                                    Widget>[
-                                                                  Text(
-                                                                    bookCollection
-                                                                            .books[index]
-                                                                            .MaxClass
-                                                                            .toString() +
-                                                                        " class",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff1F1E4F),
-                                                                        fontSize:
-                                                                            16.0),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child: Text(
+                                                        new Color(0xff55CE9D),
+                                                  ),
+                                                  Text(
+                                                    "4.0",
+                                                    style: TextStyle(
+                                                        fontSize: 18.0),
+                                                  )
+                                                ])
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 70,
+                                          ),
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Container(
+                                                  child: Card(
+                                                      elevation: 0,
+                                                      color:
+                                                          new Color(0xffE8E8ED),
+                                                      margin:
+                                                          EdgeInsets.fromLTRB(
+                                                              0.0,
+                                                              0.0,
+                                                              0.0,
+                                                              0.0),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                      ),
+                                                      child: Container(
+                                                          height: 91,
+                                                          width: 100,
+                                                          child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: <
+                                                                  Widget>[
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceEvenly,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
                                                                       bookCollection
                                                                               .books[index]
-                                                                              .price
+                                                                              .MaxClass
                                                                               .toString() +
-                                                                          " \$",
+                                                                          " class",
                                                                       style: TextStyle(
                                                                           color: Color(
-                                                                              0xff007EE7),
+                                                                              0xff1F1E4F),
                                                                           fontSize:
-                                                                              20.0),
+                                                                              16.0),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ])))))),
-                                  ],
-                                ),
-                              ],
+                                                                    Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              8.0),
+                                                                      child:
+                                                                          Text(
+                                                                        bookCollection.books[index].price.toString() +
+                                                                            " \$",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Color(0xff007EE7),
+                                                                            fontSize: 20.0),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ])))))),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         )
