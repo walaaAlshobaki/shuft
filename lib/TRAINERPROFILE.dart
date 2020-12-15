@@ -690,6 +690,17 @@ class TRAINERPROFILE extends StatelessWidget {
                                   DateTime(2020, 11, 22),
                                   DateTime(2020, 11, 24)
                                 ],
+                                onTap: (CalendarTapDetails details) {
+                                  var date = details.date;
+                                  TimeOfDay initialTime = TimeOfDay.now();
+                                  Future<TimeOfDay> pickedTime = showTimePicker(
+                                    context: context,
+                                    initialTime: initialTime,
+                                  );
+                                  //   showTimePicker(
+                                  //       context: context,
+                                  //       initialTime: TimeOfDay.now());
+                                },
                                 blackoutDatesTextStyle: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 13,

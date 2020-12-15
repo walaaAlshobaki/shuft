@@ -3,6 +3,7 @@ import 'Database/DBHelper.dart';
 import 'RemoteDataSource/packagesRemoteDataSource.dart';
 import 'model/Result.dart';
 import 'model/packagesModel.dart';
+import 'RemoteDataSource/studentRemoteDataSource.dart';
 
 class Packages extends StatefulWidget {
   @override
@@ -11,8 +12,11 @@ class Packages extends StatefulWidget {
 
 class _PackagesState extends State<Packages> {
   packagesRemoteDataSource _apiResponse = packagesRemoteDataSource();
+  StudentRemoteDataSource _apiResponse2 = StudentRemoteDataSource();
   String name = "";
-
+  String studentProfileContOfClass = "";
+  String studentProfileStage = "";
+  double classcont = 0.0;
   var dbHelper = DBHelper();
   fetchEmployeesFromDatabase() async {
     Future<List<Map>> employees = dbHelper.getEmployees();
@@ -27,6 +31,20 @@ class _PackagesState extends State<Packages> {
     super.initState();
 
     fetchEmployeesFromDatabase();
+    Future<String> authToken = _apiResponse2.studentProfileContOfClass();
+    authToken.then((data) {
+      studentProfileContOfClass = data.toString();
+      if (int.parse(studentProfileContOfClass) != 0) {
+        classcont = (35 -
+            int.parse(studentProfileContOfClass) /
+                int.parse(studentProfileContOfClass) *
+                100);
+      } else {
+        classcont = 0;
+      }
+    }, onError: (e) {
+      print(e);
+    });
   }
 
   @override
@@ -117,7 +135,7 @@ class _PackagesState extends State<Packages> {
                                       valueColor:
                                           new AlwaysStoppedAnimation<Color>(
                                               new Color(0xff55CE9D)),
-                                      value: 0.5,
+                                      value: classcont,
                                     ),
                                   )),
                             ],

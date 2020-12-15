@@ -210,5 +210,49 @@ class StudentRemoteDataSource {
     }
   }
 
+  Future<String> studentProfileContOfClass() async {
+    print("studentProfile   OOOOOOOOOOOOOOOOOOOOOOOOO");
+
+    _studentStream = StreamController();
+    Map<String, dynamic> map;
+    try {
+      final response = await client.request(
+          requestType: RequestType.GET, path: instance.student_studentProfile);
+      map = jsonDecode(response.body);
+      print("studentProfile   " + map["contOfClass"].toString());
+
+      if (response.statusCode == 200) {
+        return map["contOfClass"].toString();
+      } else {
+        // return Result.error("trainer list not available");
+      }
+    } catch (error) {
+      print(error);
+      // return Result.error("Something went wrong!");
+    }
+  }
+
+  Future<String> studentProfileStages() async {
+    print("studentProfile   OOOOOOOOOOOOOOOOOOOOOOOOO");
+
+    _studentStream = StreamController();
+    Map<String, dynamic> map;
+    try {
+      final response = await client.request(
+          requestType: RequestType.GET, path: instance.student_studentProfile);
+      map = jsonDecode(response.body);
+      print("studentProfile   " + response.body);
+
+      if (response.statusCode == 200) {
+        return map["contOfClass"].toString();
+      } else {
+        // return Result.error("trainer list not available");
+      }
+    } catch (error) {
+      print(error);
+      // return Result.error("Something went wrong!");
+    }
+  }
+
   void dispose() => _studentStream.close();
 }

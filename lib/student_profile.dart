@@ -4,6 +4,7 @@ import 'package:shaftt_app/MapSample.dart';
 import 'package:shaftt_app/student_payment.dart';
 import 'package:shaftt_app/themes.dart';
 import 'Database/DBHelper.dart';
+import 'RemoteDataSource/studentRemoteDataSource.dart';
 import 'student_class_schedule.dart';
 import 'student_setting.dart';
 
@@ -14,13 +15,35 @@ class StudentProfile extends StatefulWidget {
 
 class StudentProfileState extends State<StudentProfile> {
   String name = "";
-
+  String studentProfileContOfClass = "";
+  String studentProfileStage = "";
+  double classcont = 0.0;
+  StudentRemoteDataSource _apiResponse = StudentRemoteDataSource();
   var dbHelper = DBHelper();
   fetchEmployeesFromDatabase() async {
     Future<List<Map>> employees = dbHelper.getEmployees();
     List list = await employees;
     name = list.last["firstName"] + " " + list.last["lastName"];
-
+    Future<String> authToken = _apiResponse.studentProfileContOfClass();
+    authToken.then((data) {
+      studentProfileContOfClass = data.toString();
+      if (int.parse(studentProfileContOfClass) != 0) {
+        classcont = (35 -
+            int.parse(studentProfileContOfClass) /
+                int.parse(studentProfileContOfClass) *
+                100);
+      } else {
+        classcont = 0;
+      }
+    }, onError: (e) {
+      print(e);
+    });
+    Future<String> studentStage = _apiResponse.studentProfileStages();
+    authToken.then((data) {
+      studentProfileStage = data.toString();
+    }, onError: (e) {
+      print(e);
+    });
     return name;
   }
 
@@ -29,6 +52,7 @@ class StudentProfileState extends State<StudentProfile> {
     super.initState();
 
     fetchEmployeesFromDatabase();
+    _apiResponse.init();
   }
 
   @override
@@ -105,7 +129,7 @@ class StudentProfileState extends State<StudentProfile> {
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                 child: Text(
-                                  "23 class from 35",
+                                  studentProfileContOfClass + " class from 35",
                                   style: TextStyle(
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold),
@@ -122,7 +146,7 @@ class StudentProfileState extends State<StudentProfile> {
                                       valueColor:
                                           new AlwaysStoppedAnimation<Color>(
                                               new Color(0xff55CE9D)),
-                                      value: 0.5,
+                                      value: classcont,
                                     ),
                                   )),
                               Padding(
