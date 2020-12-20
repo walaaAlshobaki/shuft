@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Database/DBHelper.dart';
 import 'RemoteDataSource/packagesRemoteDataSource.dart';
+import 'StudantBookPackages.dart';
 import 'model/Result.dart';
 import 'model/packagesModel.dart';
 import 'RemoteDataSource/studentRemoteDataSource.dart';
@@ -309,12 +310,25 @@ class _PackagesState extends State<Packages> {
                                                   " class",
                                               style: TextStyle(fontSize: 20.0),
                                             ),
-                                            trailing: Text(
-                                              "set",
-                                              style: TextStyle(
-                                                  color: Color(0xff55CE9D),
-                                                  fontSize: 20.0),
-                                            ),
+                                            trailing: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            StudantBookPackages(
+                                                                packageModel:
+                                                                    bookCollection
+                                                                            .books[
+                                                                        index])),
+                                                  );
+                                                },
+                                                child: Text(
+                                                  "set",
+                                                  style: TextStyle(
+                                                      color: Color(0xff55CE9D),
+                                                      fontSize: 20.0),
+                                                )),
                                           ),
                                         ),
                                       ],

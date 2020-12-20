@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart';
@@ -10,7 +9,6 @@ import 'package:shaftt_app/Database/StudentDatabaseHelper.dart';
 import 'package:shaftt_app/model/NetworkResponse.dart';
 import 'package:shaftt_app/model/Result.dart';
 import 'package:shaftt_app/model/studentModel.dart';
-import 'package:shaftt_app/util/AuthRepository.dart';
 import 'package:shaftt_app/util/RequestType.dart';
 import 'package:shaftt_app/util/Singleton.dart';
 import 'package:async/async.dart' as asyn;
@@ -211,15 +209,13 @@ class StudentRemoteDataSource {
   }
 
   Future<String> studentProfileContOfClass() async {
-    print("studentProfile   OOOOOOOOOOOOOOOOOOOOOOOOO");
-
     _studentStream = StreamController();
     Map<String, dynamic> map;
     try {
       final response = await client.request(
           requestType: RequestType.GET, path: instance.student_studentProfile);
       map = jsonDecode(response.body);
-      print("studentProfile   " + map["contOfClass"].toString());
+      print("studentProfile   " + response.body.toString());
 
       if (response.statusCode == 200) {
         return map["contOfClass"].toString();
@@ -233,15 +229,13 @@ class StudentRemoteDataSource {
   }
 
   Future<String> studentProfileStages() async {
-    print("studentProfile   OOOOOOOOOOOOOOOOOOOOOOOOO");
-
     _studentStream = StreamController();
     Map<String, dynamic> map;
     try {
       final response = await client.request(
           requestType: RequestType.GET, path: instance.student_studentProfile);
       map = jsonDecode(response.body);
-      print("studentProfile   " + response.body);
+      // print("studentProfile   " + map["stuInf"].toString());
 
       if (response.statusCode == 200) {
         return map["contOfClass"].toString();

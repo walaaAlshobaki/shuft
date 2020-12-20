@@ -39,7 +39,7 @@ class StudentProfileState extends State<StudentProfile> {
       print(e);
     });
     Future<String> studentStage = _apiResponse.studentProfileStages();
-    authToken.then((data) {
+    studentStage.then((data) {
       studentProfileStage = data.toString();
     }, onError: (e) {
       print(e);
@@ -130,6 +130,15 @@ class StudentProfileState extends State<StudentProfile> {
                                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                 child: Text(
                                   studentProfileContOfClass + " class from 35",
+                                  style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Text(
+                                  " stage : " + studentProfileContOfClass,
                                   style: TextStyle(
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold),
