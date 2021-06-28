@@ -122,6 +122,10 @@ class _State extends State<StudantBookPackages> {
                             (index + 1).toString() + " class",
                             style: TextStyle(fontSize: 20.0),
                           ),
+                          subtitle: Text(
+                            selectedDate.toString(),
+                            style: TextStyle(fontSize: 20.0),
+                          ),
                           trailing: GestureDetector(
                               onTap: () {
                                 _selectDate(context);

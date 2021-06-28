@@ -46,7 +46,7 @@ class _ExamplePageState extends State<ExamplePage> {
       body: Container(
         child: _buildList(),
       ),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
     );
   }
 

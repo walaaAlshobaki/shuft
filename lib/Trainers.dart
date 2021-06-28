@@ -240,7 +240,6 @@ class _TrainersState extends State<Trainers> {
                     ],
                   );
                 },
-                itemCount: 15,
               ),
             ),
             Padding(

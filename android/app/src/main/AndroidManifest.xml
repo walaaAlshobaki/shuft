@@ -14,10 +14,11 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="shaftt_app"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
 
          <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAohMLCIUs3VcN-qM6MWCnk42c4UR01t0c"/>
+               android:value="AIzaSyC6nifByQhPZHuGzVpH9792i5aFPpWOf5s"/>
                 <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />

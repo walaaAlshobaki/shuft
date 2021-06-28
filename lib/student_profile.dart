@@ -27,13 +27,15 @@ class StudentProfileState extends State<StudentProfile> {
     Future<String> authToken = _apiResponse.studentProfileContOfClass();
     authToken.then((data) {
       studentProfileContOfClass = data.toString();
-      if (int.parse(studentProfileContOfClass) != 0) {
-        classcont = (35 -
-            int.parse(studentProfileContOfClass) /
-                int.parse(studentProfileContOfClass) *
-                100);
-      } else {
-        classcont = 0;
+      if (studentProfileContOfClass != null) {
+        if (int.parse(studentProfileContOfClass) != 0) {
+          classcont = (35 -
+              int.parse(studentProfileContOfClass) /
+                  int.parse(studentProfileContOfClass) *
+                  100);
+        } else {
+          classcont = 0;
+        }
       }
     }, onError: (e) {
       print(e);
