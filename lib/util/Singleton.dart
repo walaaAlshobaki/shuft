@@ -42,7 +42,7 @@ class Singleton {
       'Authorization': 'Bearer $token'
     };
     Map<String, dynamic> map;
-    final uri = 'http://sheft-platform.com/api/Student/student-refresh';
+    final uri = 'http://shafft.com/api/Student/student-refresh';
     var postUri = Uri.parse(uri);
     var request = new MultipartRequest("POST", postUri);
     request.headers.addAll(headers);

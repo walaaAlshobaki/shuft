@@ -69,7 +69,7 @@ Future userLogin() async{
   String password = passwordController.text;
 
   // SERVER LOGIN API URL
-  var url = 'http://sheft-platform.com/API/login.php';
+  var url = 'http://shafft.com/API/login.php';
 
   // Store all data with Param Name.
   var data = {'email': email, 'password' : password};

@@ -114,7 +114,7 @@ String errMessage = 'Error Uploading Image';
 
 
   // SERVER LOGIN API URL
-  var url = 'http://sheft-platform.com/API/register.php';
+  var url = 'http://shafft.com/API/register.php';
    if(isSelectedGender[0]){
     gende="male";
   }else{

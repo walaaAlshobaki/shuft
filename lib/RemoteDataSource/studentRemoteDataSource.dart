@@ -123,7 +123,7 @@ class StudentRemoteDataSource {
     // get file length
     var length = await student.certifcateCodeFile.length();
     // try {
-    final uri = 'http://sheft-platform.com/api/Student/register-student';
+    final uri = 'http://shafft.com/api/Student/register-student';
     var postUri = Uri.parse(uri);
     var request = new http.MultipartRequest("POST", postUri);
 

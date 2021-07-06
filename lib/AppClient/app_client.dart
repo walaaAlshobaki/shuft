@@ -13,7 +13,7 @@ import '../util/RequestTypeNotFoundException.dart';
 
 class AppClient {
   //Base url
-  static const String _baseUrl = "http://sheft-platform.com/api";
+  static const String _baseUrl = "http://shafft.com/api";
   final Client _client;
   var prefs = SharedPreferences.getInstance();
   String token;
