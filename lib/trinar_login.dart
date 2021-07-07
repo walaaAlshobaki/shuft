@@ -6,8 +6,10 @@ import 'dart:convert';
 
 import 'package:shaftt_app/trainer_main_login.dart';
 
+import 'RemoteDataSource/TrainerRemoteDataSource.dart';
 import 'TrainerHome.dart';
 import 'Trainer_profile.dart';
+import 'model/TrainerDataModel.dart';
 import 'profile_studant.dart';
 
 // ignore: must_be_immutable
@@ -16,13 +18,14 @@ class TrainerLogin extends StatefulWidget {
   // Getting value from TextField widget.
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
   @override
   _TrainerLoginState createState() => _TrainerLoginState();
 }
 
 class _TrainerLoginState extends State<TrainerLogin> {
   bool visible = false;
-
+  TrainerRemoteDataSource _apiResponse = TrainerRemoteDataSource();
   // Getting value from TextField widget.
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -37,59 +40,12 @@ class _TrainerLoginState extends State<TrainerLogin> {
     String email = emailController.text;
     String password = passwordController.text;
 
-    // SERVER LOGIN API URL
-    var url = 'https://shafft.com/API/login.php';
-
-    // Store all data with Param Name.
-    var data = {'role': "trainer", 'email': email, 'password': password};
-
-    // Starting Web API Call.
-    var response = await http.post(url, body: json.encode(data));
-
-    // Getting Server response into variable.
-    Map<String, dynamic> map = jsonDecode(response.body);
-
-    var message = map["message"];
-    print(message);
-
-    // If the Response Message is Matched.
-    if (message == 'You have successfully logged in.') {
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => TrainerHome()));
-      // Navigate to Profile Screen & Sending Email to Next Screen.
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => ProfileStudant(email : emailController.text))
-      // );
-    } else {
-      // If Email or Password did not Matched.
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-
-      // Showing Alert Dialog with Response JSON Message.
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
+    final student = TrainairDataModel(
+      email: email,
+      password: password,
+      location: "test",
+    );
+    _apiResponse.loginTrainair(student, context);
   }
 
   @override

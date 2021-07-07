@@ -115,17 +115,6 @@ class _StudantRegistrationState extends State<StudantRegistration> {
         IDNum: id,
         Gender: gende,
         certifcateCodeFile: file);
-    print(firstname);
-    print(lastname);
-    print(email);
-    print(password);
-    print(phone);
-    print(formatted);
-    print(fileName);
-    print(id);
-    print(gende);
-    print(file);
-
     _apiResponse.registerStudent(student, context);
   }
 

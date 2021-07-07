@@ -11,6 +11,8 @@ class Singleton {
   Singleton._internal();
   static Singleton get instance => _singleton;
   var studentLogin = "Student/login-student";
+  var trainerLogin = "Trainer/login-trainer";
+
   var studentRegisert = "Student/register-student";
   var classSchedule = "Student/Trainer/class-schedule";
   var packageSchedule = "Student/all-package";

@@ -207,7 +207,7 @@ class TrainerProfileState extends State<TrainerProfile> {
                                       const EdgeInsets.fromLTRB(0, 40, 0, 0),
                                   child: Container(
                                     color: Colors.white30,
-                                    height: 300,
+                                    height: 250,
                                     child: GridView.count(
                                         crossAxisCount: 3,
                                         childAspectRatio: 1.0,
@@ -233,12 +233,6 @@ class TrainerProfileState extends State<TrainerProfile> {
                                               whiteGradients,
                                               TrainerClassSchedule(),
                                               Icons.schedule),
-                                          roundedRectButton(
-                                              "Payment",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              StudentSettings(),
-                                              Icons.payment),
                                           roundedRectButton(
                                               "Settings",
                                               Color(0xff1F1E4F),
