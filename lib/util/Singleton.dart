@@ -42,7 +42,7 @@ class Singleton {
       'Authorization': 'Bearer $token'
     };
     Map<String, dynamic> map;
-    final uri = 'http://shafft.com/api/Student/student-refresh';
+    final uri = 'https://shafft.com/api/Student/student-refresh';
     var postUri = Uri.parse(uri);
     var request = new MultipartRequest("POST", postUri);
     request.headers.addAll(headers);
@@ -53,14 +53,14 @@ class Singleton {
     print("refreshStudent " + map["api_token"]);
     Student std = new Student(
         firstName: list.last["firstName"],
-        id: int.parse(list.last["columnId"]),
+        id: list.last["columnId"],
         lastName: list.last["lastName"],
         email: list.last["email"],
         phoneNumber: list.last["phoneNumber"],
         birthday: list.last["birthday"],
         certifcateCode: list.last["certifcateCode"],
         IDNum: list.last["IDNum"],
-        Gender: int.parse(list.last["Gender"]),
+        Gender: list.last["Gender"],
         location: list.last["location"],
         profile: list.last["profile"],
         api_token: map["api_token"]);

@@ -52,7 +52,7 @@ class _StudantRegistrationState extends State<StudantRegistration> {
   List<bool> isSelected;
   bool visible = false;
   bool accept = false;
-
+  String gende = "0";
   String base64Image = null;
   String fileName = "";
 
@@ -101,7 +101,6 @@ class _StudantRegistrationState extends State<StudantRegistration> {
 
     // s1.studentRegisert
     var formatter = new DateFormat('yyyy-MM-dd');
-    int gende = 0;
 
     String formatted = formatter.format(selectedDate);
 
@@ -116,6 +115,17 @@ class _StudantRegistrationState extends State<StudantRegistration> {
         IDNum: id,
         Gender: gende,
         certifcateCodeFile: file);
+    print(firstname);
+    print(lastname);
+    print(email);
+    print(password);
+    print(phone);
+    print(formatted);
+    print(fileName);
+    print(id);
+    print(gende);
+    print(file);
+
     _apiResponse.registerStudent(student, context);
   }
 
@@ -393,9 +403,11 @@ class _StudantRegistrationState extends State<StudantRegistration> {
                             for (int i = 0; i < isSelected.length; i++) {
                               if (i == index) {
                                 isSelected[i] = true;
+                                gende = "1";
                                 print(isSelected);
                               } else {
                                 isSelected[i] = false;
+                                gende = "0";
                                 print(isSelected);
                               }
                             }

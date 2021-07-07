@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:async/async.dart' as ass;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,6 +18,7 @@ import 'package:http_parser/http_parser.dart' as aa;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../SharedPrefs.dart';
 import '../student_Packages.dart';
+import 'package:path/path.dart';
 
 class StudentRemoteDataSource {
   //Creating Singleton
@@ -59,7 +61,7 @@ class StudentRemoteDataSource {
 
           Student student = new Student();
           student.firstName = map["student"]["firstName"];
-          student.id = map["student"]["id"];
+          student.id = map["student"]["id"].toString();
           student.lastName = map["student"]["lastName"];
           student.email = map["student"]["email"];
           student.phoneNumber = map["student"]["phoneNumber"];
@@ -81,8 +83,8 @@ class StudentRemoteDataSource {
           SharedPrefs.setLogin(true);
         }
       } else {
-        print((response.statusCode));
-        print((student.password));
+        // print((response.statusCode));
+        // print((student.password));
         _studentStream.sink.add(Result.error("Something went wrong"));
         SharedPrefs.setLogin(false);
         showDialog(
@@ -111,32 +113,36 @@ class StudentRemoteDataSource {
 
   void registerStudent(Student student, BuildContext context) async {
     _studentStream.sink.add(Result<String>.loading("Loading"));
-
     Map<String, dynamic> map;
 
-    final headers = {'Content-Type': 'application/json'};
-
-    var fileName = student.certifcateCodeFile.path.split("/").last;
-
+// final uri = 'https://shafft.com/api/Student/register-student';
     var stream = new http.ByteStream(
-        asyn.DelegatingStream.typed(student.certifcateCodeFile.openRead()));
+        ass.DelegatingStream.typed(student.certifcateCodeFile.openRead()));
     // get file length
-    var length = await student.certifcateCodeFile.length();
-    // try {
-    final uri = 'http://shafft.com/api/Student/register-student';
-    var postUri = Uri.parse(uri);
-    var request = new http.MultipartRequest("POST", postUri);
+    var length = await student.certifcateCodeFile
+        .length(); //imageFile is your image file
+    Map<String, String> headers = {
+      "Accept": "application/json"
+    }; // ignore this headers if there is no authentication
 
+    // string to uri
+    var uri = Uri.parse("https://shafft.com/api/Student/register-student");
+
+    // create multipart request
+    var request = new http.MultipartRequest("POST", uri);
+
+    // multipart that takes file
     var multipartFileSign = new http.MultipartFile(
         'certifcateCode', stream, length,
-        filename: fileName);
+        filename: basename(student.certifcateCodeFile.path));
+
     // add file to multipart
     request.files.add(multipartFileSign);
 
-    request.files.add(new http.MultipartFile.fromBytes(
-        'certifcateCode', await student.certifcateCodeFile.readAsBytes(),
-        contentType: new aa.MediaType('image', 'jpg')));
+    //add headers
     request.headers.addAll(headers);
+
+    //adding params
     request.fields['firstName'] = student.firstName;
     request.fields['lastName'] = student.lastName;
     request.fields['email'] = student.email;
@@ -144,68 +150,77 @@ class StudentRemoteDataSource {
     request.fields['phoneNumber'] = student.phoneNumber;
     request.fields['birthday'] = student.birthday;
 
-    request.fields['location'] = fileName;
+    request.fields['location'] = student.location;
     request.fields['IDNum'] = student.IDNum;
     request.fields['Gender'] = student.Gender.toString();
     request.fields['password_confirmation'] = student.password;
     request.fields['stageId'] = "1";
 
-    var response = await request.send();
-    var response2 = await http.Response.fromStream(response);
-    map = jsonDecode(response2.body);
-    var message = map["msg"];
-    if (message == 'User successfully registered') {
-      _studentStream.sink.add(Result<NetworkResponse>.success(
-          NetworkResponse.fromRawJson(response2.body)));
+    // send
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => StudentPackages()));
-                  SharedPrefs.setLogin(true);
-                  SharedPrefs.setStudent(map["student"]);
-                },
-              ),
-            ],
-          );
-        },
-      );
-      prefs = await SharedPreferences.getInstance();
-      SharedPrefs.setUsername(
-          map["student"]["firstName"] + " " + map["student"]["lastName"]);
-      SharedPrefs.setUserToken(map["student"]["api_token"]);
-    } else {
-      // If Email or Password did not Matched.
-      // Hiding the CircularProgressIndicator.
-      _studentStream.sink.add(Result.error("Something went wrong"));
-      SharedPrefs.setLogin(false);
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
+    var response = await request.send();
+
+    print(response.statusCode);
+
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+
+      map = jsonDecode(value);
+      var message = map["msg"];
+      if (message == 'User successfully registered') {
+        _studentStream.sink.add(Result<NetworkResponse>.success(
+            NetworkResponse.fromRawJson(value)));
+
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudentPackages()));
+                    SharedPrefs.setLogin(true);
+                    SharedPrefs.setStudent(map["student"]);
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        prefs = SharedPreferences.getInstance();
+        SharedPrefs.setUsername(
+            map["student"]["firstName"] + " " + map["student"]["lastName"]);
+        SharedPrefs.setUserToken(map["student"]["api_token"]);
+      } else {
+        // If Email or Password did not Matched.
+        // Hiding the CircularProgressIndicator.
+        _studentStream.sink.add(Result.error("Something went wrong"));
+        SharedPrefs.setLogin(false);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
   }
 
   Future<String> studentProfileContOfClass() async {

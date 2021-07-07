@@ -10,11 +10,11 @@ class Student {
   File certifcateCodeFile;
   String certifcateCode;
   String IDNum;
-  int Gender;
+  String Gender;
   String location;
   String updated_at;
   String created_at;
-  int id;
+  String id;
   String profile;
   String api_token;
 

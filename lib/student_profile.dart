@@ -165,7 +165,7 @@ class StudentProfileState extends State<StudentProfile> {
                                       const EdgeInsets.fromLTRB(0, 40, 0, 0),
                                   child: Container(
                                     color: Colors.white30,
-                                    height: 400,
+                                    height: 350,
                                     child: GridView.count(
                                         crossAxisCount: 2,
                                         childAspectRatio: 1.0,
@@ -173,12 +173,6 @@ class StudentProfileState extends State<StudentProfile> {
                                         mainAxisSpacing: 4.0,
                                         crossAxisSpacing: 4.0,
                                         children: <Widget>[
-                                          roundedRectButton(
-                                              "payment",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              StudentPayment(),
-                                              Icons.payment),
                                           roundedRectButton(
                                               "My class schedule",
                                               Color(0xff1F1E4F),
