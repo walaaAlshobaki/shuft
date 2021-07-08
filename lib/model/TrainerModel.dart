@@ -31,10 +31,10 @@ class TrainerModel {
   final String IDNum;
   final String birthday;
   final String details;
-  final int Gender;
+  final String Gender;
   final String testImage;
-  final int test;
-  final int Lesson_price;
+  final String test;
+  final String Lesson_price;
   final String location;
   final String avatar;
 

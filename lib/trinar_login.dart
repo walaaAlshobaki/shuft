@@ -1,16 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shaftt_app/themes.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 import 'package:shaftt_app/trainer_main_login.dart';
-
 import 'RemoteDataSource/TrainerRemoteDataSource.dart';
-import 'TrainerHome.dart';
-import 'Trainer_profile.dart';
 import 'model/TrainerDataModel.dart';
-import 'profile_studant.dart';
 
 // ignore: must_be_immutable
 class TrainerLogin extends StatefulWidget {
