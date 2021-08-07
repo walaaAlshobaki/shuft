@@ -17,6 +17,7 @@ class Singleton {
   var classSchedule = "Student/Trainer/class-schedule";
   var packageSchedule = "Student/all-package";
   var allTeacher = "Student/all-teacher";
+  var allClass = "Student/classes";
   var studentRefresh = "Student/student-refresh";
   var filterTeacherName = "Student/filter-teacher-name";
   var student_studentProfile = "Student/student-profile";

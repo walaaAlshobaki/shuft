@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shaftt_app/MapSample.dart';
 import 'package:shaftt_app/student_payment.dart';
 import 'package:shaftt_app/themes.dart';
+import 'BlurryDialog.dart';
 import 'Database/DBHelper.dart';
 import 'RemoteDataSource/studentRemoteDataSource.dart';
 import 'student_class_schedule.dart';
@@ -183,7 +184,7 @@ class StudentProfileState extends State<StudentProfile> {
                                               "Logout",
                                               Color(0xff1F1E4F),
                                               whiteGradients,
-                                              MapSample(),
+                                              BlurryDialog(),
                                               Icons.person_outline),
                                           roundedRectButton(
                                               "settings",

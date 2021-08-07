@@ -40,7 +40,7 @@ class TRAINERPROFILE extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(
                                   Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0x261f1e4f),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ),
@@ -367,7 +367,7 @@ class TRAINERPROFILE extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
-                              color: const Color(0x2c707070),
+                              color: const Color(0xffffff),
                             ),
                           ),
                         ),

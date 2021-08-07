@@ -37,29 +37,14 @@ class DBHelper {
     var dbClient = await db;
     List<Map> list = await dbClient.rawQuery('SELECT * FROM student_table');
     print(list[0]);
-    // List<Student> employees = new List();
-    // for (int i = 0; i < list.length; i++) {
-    //   print(list[i]);
-    //   print("SELECT * FROM student_table");
-    //   Student student = new Student();
-    //   student.firstName = list[i]["firstName"];
-    //   student.id = list[i]["id"];
-    //   student.lastName = list[i]["lastName"];
-    //   student.email = list[i]["email"];
-    //   student.phoneNumber = list[i]["phoneNumber"];
-    //   student.birthday = list[i]["birthday"];
-    //   student.certifcateCode = list[i]["aveter"];
-    //   student.IDNum = list[i]["IDNum"];
-    //   student.Gender = list[i]["Gender"];
-    //   student.location = list[i]["location"];
-    //   student.profile = list[i]["profile"];
-    //   student.api_token = list[i]["api_token"];
-    //   print(student.api_token);
-    //   employees.add(student);
-    // }
-
     print(list.length);
     return list;
+  }
+
+  void destroy() async {
+    print("destroy student_table");
+    var dbClient = await db;
+    dbClient.delete("student_table");
   }
 
   updateStudent(Student question) async {

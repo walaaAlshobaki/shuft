@@ -4,78 +4,70 @@ import 'package:shaftt_app/themes.dart';
 import 'package:shaftt_app/what_is_shaftt.dart';
 
 class YourLessonsWhenYouWant extends StatefulWidget {
- @override
-  _YourLessonsWhenYouWanttState createState() => _YourLessonsWhenYouWanttState();
+  @override
+  _YourLessonsWhenYouWanttState createState() =>
+      _YourLessonsWhenYouWanttState();
 }
 
 class _YourLessonsWhenYouWanttState extends State<YourLessonsWhenYouWant> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Container(
-      child: LayoutBuilder(
+    return Center(child: Container(child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return Scaffold(
-      body: Container(
-       child: Stack(
-         children: <Widget>[
-            Padding(
-          padding: EdgeInsets.fromLTRB(360, 60, 0, 22),
-          child: Text('Skip',
-            style: TextStyle(
-              fontSize: 19.0,
-                    fontFamily:"HelveticaBold",
-                    color: new Color(0xff55CE9D),
-                   
-              )
-              )
-              ),
-         Padding(
-          padding: EdgeInsets.fromLTRB(33, 100, 33, 0),
-          child: Text('Your lessons when you want',
-            style: TextStyle(
-              fontSize: 35.0,
-                    fontFamily:"HelveticaBold",
-                    color: new Color(0xff55CE9D),
-                   
-              )
-              )
-              ),
-               Center(child: Image.asset("assets/img/g2.png",width: 277,height: 195,) ,),
-               Padding(
-          padding: EdgeInsets.fromLTRB(20, 650,10, 0),
-          child: Text('choose the time that suites you',
-            style: TextStyle(
-              fontSize: 20.0,
-                    fontFamily:"HelveticaBold",
-                    color: new Color(0xff707070),
-                   
-              )
-              )
+      return Scaffold(
+        body: Container(
+          child: Stack(
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.fromLTRB(360, 60, 0, 22),
+                  child: Text('Skip',
+                      style: TextStyle(
+                        fontSize: 19.0,
+                        fontFamily: "HelveticaBold",
+                        color: new Color(0xff55CE9D),
+                      ))),
+              Padding(
+                  padding: EdgeInsets.fromLTRB(33, 100, 33, 0),
+                  child: Text('Your lessons when you want',
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        fontFamily: "HelveticaBold",
+                        color: new Color(0xff55CE9D),
+                      ))),
+              Center(
+                child: Image.asset(
+                  "assets/img/g2.png",
+                  width: 277,
+                  height: 195,
+                ),
               ),
               Padding(
-                
-          padding: EdgeInsets.fromLTRB(300, 750,10, 0),
-          child:  roundedRectButton("Next",Colors.white, blueGradients, SelectYourRegion()),
-                 
+                  padding: EdgeInsets.fromLTRB(20, 650, 10, 0),
+                  child: Text('choose the time that suites you',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontFamily: "HelveticaBold",
+                        color: new Color(0xff707070),
+                      ))),
+              Padding(
+                padding: EdgeInsets.fromLTRB(300, 450, 10, 0),
+                child: roundedRectButton(
+                    "Next", Colors.white, blueGradients, SelectYourRegion()),
               ),
-               Padding(
-          padding: EdgeInsets.fromLTRB(20, 750,0, 0),
-          child:  roundedRectButton("Back",Color(0xff55CE9D), whiteGradients, WhatIsShaftt()),
-                 
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 750, 0, 0),
+                child: roundedRectButton(
+                    "Back", Color(0xff55CE9D), whiteGradients, WhatIsShaftt()),
               ),
-              
-         ],
-       ),
-        
-       
-       
-      ),
-      
-    );
-       }
-    )));
+            ],
+          ),
+        ),
+      );
+    })));
   }
-   Widget roundedRectButton(String title,Color textColor, List<Color> gradient, Widget page) {
+
+  Widget roundedRectButton(
+      String title, Color textColor, List<Color> gradient, Widget page) {
     return Builder(builder: (BuildContext mContext) {
       return Padding(
         padding: EdgeInsets.only(bottom: 10),
@@ -99,7 +91,7 @@ class _YourLessonsWhenYouWanttState extends State<YourLessonsWhenYouWant> {
                     style: TextStyle(
                         color: textColor,
                         fontSize: 22,
-                        fontFamily:"HelveticaMedium",
+                        fontFamily: "HelveticaMedium",
                         fontWeight: FontWeight.w300)),
               ),
               onTap: () {

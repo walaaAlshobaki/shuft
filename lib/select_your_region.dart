@@ -47,7 +47,7 @@ class _SelectYourRegionState extends State<SelectYourRegion> {
                       color: new Color(0xff707070),
                     ))),
             Padding(
-              padding: EdgeInsets.fromLTRB(260, 750, 10, 0),
+              padding: EdgeInsets.fromLTRB(260, 450, 10, 0),
               child: roundedRectButton(
                   "Next", Colors.white, blueGradients, LetsStarting()),
             ),

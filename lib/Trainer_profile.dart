@@ -77,182 +77,205 @@ class TrainerProfileState extends State<TrainerProfile> {
                       ]),
                 )),
           ),
-          Container(
-              child: Stack(children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 140, left: 10, right: 10),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.star,
-                      size: 20.0,
-                      color: new Color(0xff55CE9D),
-                    ),
-                    Text(
-                      "3.5",
-                      style: TextStyle(fontSize: 18.0),
-                    )
-                  ]),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 140, left: 10, right: 10),
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Image.asset(
-                        "assets/img/user.png",
-                        width: 100,
-                        height: 100,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.edit,
-                        ),
-                        iconSize: 20,
-                        color: Color(0xff707070),
-                        splashColor: Color(0xff707070),
-                        padding: EdgeInsets.only(top: 15, left: 35, right: 10),
-                        onPressed: _choose,
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: new Color(0xff1F1E4F),
-                                    fontWeight: FontWeight.bold),
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                    child: Stack(children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 140, left: 10, right: 10),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Icon(
+                            Icons.star,
+                            size: 20.0,
+                            color: new Color(0xff55CE9D),
+                          ),
+                          Text(
+                            "3.5",
+                            style: TextStyle(fontSize: 18.0),
+                          )
+                        ]),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 140, left: 10, right: 10),
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Image.asset(
+                              "assets/img/user.png",
+                              width: 100,
+                              height: 100,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.edit,
                               ),
-                              Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 40, 0, 0),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          "Car Photo",
-                                          style: TextStyle(
-                                              fontSize: 15.0,
-                                              color: new Color(0xff707070),
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                            margin: EdgeInsets.symmetric(
-                                                vertical: 20.0),
-                                            height: 100.0,
-                                            child: new ListView(
-                                              scrollDirection: Axis.horizontal,
+                              iconSize: 20,
+                              color: Color(0xff707070),
+                              splashColor: Color(0xff707070),
+                              padding:
+                                  EdgeInsets.only(top: 15, left: 35, right: 10),
+                              onPressed: _choose,
+                            ),
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      name,
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: new Color(0xff1F1E4F),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 40, 0, 0),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                "Car Photo",
+                                                style: TextStyle(
+                                                    fontSize: 15.0,
+                                                    color:
+                                                        new Color(0xff707070),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 20.0),
+                                                  height: 100.0,
+                                                  child: new ListView(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    children: <Widget>[
+                                                      Container(
+                                                        width: 150.0,
+                                                        color: Colors.grey[300],
+                                                      ),
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  10, 0, 10, 0),
+                                                          child: Divider(
+                                                            height: 2.0,
+                                                            color:
+                                                                Colors.grey[50],
+                                                          )),
+                                                      Container(
+                                                        width: 150.0,
+                                                        color: Colors.grey[300],
+                                                      ),
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  10, 0, 10, 0),
+                                                          child: Divider(
+                                                            height: 2.0,
+                                                            color:
+                                                                Colors.grey[50],
+                                                          )),
+                                                      Container(
+                                                        width: 150.0,
+                                                        color: Colors.grey[300],
+                                                      ),
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  10, 0, 10, 0),
+                                                          child: Divider(
+                                                            height: 2.0,
+                                                            color:
+                                                                Colors.grey[50],
+                                                          )),
+                                                      Container(
+                                                        width: 150.0,
+                                                        color: Colors.grey[300],
+                                                      ),
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  10, 0, 10, 0),
+                                                          child: Divider(
+                                                            height: 2.0,
+                                                            color:
+                                                                Colors.grey[50],
+                                                          )),
+                                                    ],
+                                                  ))
+                                            ])),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 40, 0, 0),
+                                        child: Container(
+                                          color: Colors.white30,
+                                          height: 250,
+                                          child: GridView.count(
+                                              crossAxisCount: 3,
+                                              childAspectRatio: 1.0,
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              mainAxisSpacing: 4.0,
+                                              crossAxisSpacing: 4.0,
                                               children: <Widget>[
-                                                Container(
-                                                  width: 150.0,
-                                                  color: Colors.grey[300],
-                                                ),
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(10, 0, 10, 0),
-                                                    child: Divider(
-                                                      height: 2.0,
-                                                      color: Colors.grey[50],
-                                                    )),
-                                                Container(
-                                                  width: 150.0,
-                                                  color: Colors.grey[300],
-                                                ),
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(10, 0, 10, 0),
-                                                    child: Divider(
-                                                      height: 2.0,
-                                                      color: Colors.grey[50],
-                                                    )),
-                                                Container(
-                                                  width: 150.0,
-                                                  color: Colors.grey[300],
-                                                ),
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(10, 0, 10, 0),
-                                                    child: Divider(
-                                                      height: 2.0,
-                                                      color: Colors.grey[50],
-                                                    )),
-                                                Container(
-                                                  width: 150.0,
-                                                  color: Colors.grey[300],
-                                                ),
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(10, 0, 10, 0),
-                                                    child: Divider(
-                                                      height: 2.0,
-                                                      color: Colors.grey[50],
-                                                    )),
-                                              ],
-                                            ))
-                                      ])),
-                              Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 40, 0, 0),
-                                  child: Container(
-                                    color: Colors.white30,
-                                    height: 250,
-                                    child: GridView.count(
-                                        crossAxisCount: 3,
-                                        childAspectRatio: 1.0,
-                                        padding: const EdgeInsets.all(4.0),
-                                        mainAxisSpacing: 4.0,
-                                        crossAxisSpacing: 4.0,
-                                        children: <Widget>[
-                                          roundedRectButton(
-                                              "Package",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              TrainerPackages(),
-                                              Icons.card_giftcard),
-                                          roundedRectButton(
-                                              "Calendar",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              TrainerCalender(),
-                                              Icons.calendar_today),
-                                          roundedRectButton(
-                                              " schedule",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              TrainerClassSchedule(),
-                                              Icons.schedule),
-                                          roundedRectButton(
-                                              "Settings",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              StudentSettings(),
-                                              Icons.settings),
-                                          roundedRectButton(
-                                              "Logout",
-                                              Color(0xff1F1E4F),
-                                              whiteGradients,
-                                              StudentSettings(),
-                                              Icons.person_outline),
-                                        ]),
-                                  ))
-                            ]))
-                  ],
-                ),
-              ),
-            )
-          ])),
+                                                roundedRectButton(
+                                                    "Package",
+                                                    Color(0xff1F1E4F),
+                                                    whiteGradients,
+                                                    TrainerPackages(),
+                                                    Icons.card_giftcard),
+                                                roundedRectButton(
+                                                    "Calendar",
+                                                    Color(0xff1F1E4F),
+                                                    whiteGradients,
+                                                    TrainerCalender(),
+                                                    Icons.calendar_today),
+                                                roundedRectButton(
+                                                    " schedule",
+                                                    Color(0xff1F1E4F),
+                                                    whiteGradients,
+                                                    TrainerClassSchedule(),
+                                                    Icons.schedule),
+                                                roundedRectButton(
+                                                    "Settings",
+                                                    Color(0xff1F1E4F),
+                                                    whiteGradients,
+                                                    StudentSettings(),
+                                                    Icons.settings),
+                                                roundedRectButton(
+                                                    "Logout",
+                                                    Color(0xff1F1E4F),
+                                                    whiteGradients,
+                                                    StudentSettings(),
+                                                    Icons.person_outline),
+                                              ]),
+                                        ))
+                                  ]))
+                        ],
+                      ),
+                    ),
+                  )
+                ])),
+              ],
+            ),
+          )
         ])));
   }
 

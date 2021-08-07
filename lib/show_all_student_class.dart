@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:shaftt_app/model/ClassModel.dart';
+import 'RemoteDataSource/ClassRemoteDataSource.dart';
 import 'SearchClass.dart';
 
 class AllStudentClass extends StatefulWidget {
@@ -8,8 +9,7 @@ class AllStudentClass extends StatefulWidget {
 }
 
 class _AllStudentClassState extends State<AllStudentClass> {
-
-
+  ClassRemoteDataSource _apiResponse = ClassRemoteDataSource();
   @override
   void initState() {
     super.initState();
@@ -32,13 +32,9 @@ class _AllStudentClassState extends State<AllStudentClass> {
       child: new Scaffold(
         body: Stack(
           children: <Widget>[
-          
             Container(
               child: Stack(
-                children: <Widget>[
-                 
-                
-                ],
+                children: <Widget>[],
               ),
             ),
             Padding(
@@ -58,8 +54,6 @@ class _AllStudentClassState extends State<AllStudentClass> {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
-                             
-                                  
                                     Card(
                                       elevation: 5,
                                       color: new Color(0xffE8E8ED),
@@ -80,23 +74,17 @@ class _AllStudentClassState extends State<AllStudentClass> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: <Widget>[
-                                               
-                                             
-                                                    Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child:   Text(
-                                                      "Class 25",
-                                                      style: TextStyle(
-                                                          fontSize: 19.0,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),),
-                                                   
-                                               
-                                                  
-                                               
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    "Class 25",
+                                                    style: TextStyle(
+                                                        fontSize: 19.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                             Row(
@@ -104,78 +92,76 @@ class _AllStudentClassState extends State<AllStudentClass> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: <Widget>[
-                                               
-                                             
-                                                    Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child:   Text(
-                                                      "Ahmad Omar",
-                                                      style: TextStyle(
-                                                          fontSize: 20.0,
-                                                          color: new Color(0xff55CE9D),
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),),
-                                                   
-                                                 Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child:   Text(
-                                                      " 20/9",
-                                                      style: TextStyle(
-                                                          fontSize: 18.0,
-                                                           color: new Color(0xff55CE9D),
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),),
-                                                  
-                                               
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    "Ahmad Omar",
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        color: new Color(
+                                                            0xff55CE9D),
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    " 20/9",
+                                                    style: TextStyle(
+                                                        fontSize: 18.0,
+                                                        color: new Color(
+                                                            0xff55CE9D),
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                             Divider(
-                              height: 2.0,
-                              color: Colors.grey,
-                            ),
-                              Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child:Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: <Widget>[
-                                                Text("Trainer comment",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff707070),
-                                                                        fontSize:
-                                                                            16.0),), Text("Existent class",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff55CE9D),
-                                                                        fontSize:
-                                                                            16.0),)
-                                              ]),),
-                                              Text("تم شرح الاساسيات وكيفية الجلسة الصحيحة والتحكم بالمقود والمري بالشكل الصحيح والطالب متعاون ومتفهم جدا",
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff707070),
-                                                                        fontSize:
-                                                                            17.0),)
+                                              height: 2.0,
+                                              color: Colors.grey,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      "Trainer comment",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Color(0xff707070),
+                                                          fontSize: 16.0),
+                                                    ),
+                                                    Text(
+                                                      "Existent class",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Color(0xff55CE9D),
+                                                          fontSize: 16.0),
+                                                    )
+                                                  ]),
+                                            ),
+                                            Text(
+                                              "تم شرح الاساسيات وكيفية الجلسة الصحيحة والتحكم بالمقود والمري بالشكل الصحيح والطالب متعاون ومتفهم جدا",
+                                              style: TextStyle(
+                                                  color: Color(0xff707070),
+                                                  fontSize: 17.0),
+                                            )
                                           ],
                                         ),
-                                        
                                       ),
                                     )
                                   ],
                                 ),
                               ),
                             )
-                            
                           ],
                         ),
                       )
@@ -190,6 +176,7 @@ class _AllStudentClassState extends State<AllStudentClass> {
       ),
     );
   }
+
 
   Widget getRow(int i) {
     return GestureDetector(
